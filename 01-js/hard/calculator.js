@@ -9,13 +9,65 @@
     - getResult: returns the value of `result` variable
     - calculate: takes a string expression which can take multi-arithmetic operations and give its result
       example input: `10 +   2 *    (   6 - (4 + 1) / 2) + 7`
-      Points to Note: 
+      Points to Note:
         1. the input can have multiple continuous spaces, you're supposed to avoid them and parse the expression correctly
         2. the input can have invalid non-numerical characters like `5 + abc`, you're supposed to throw error for such inputs
 
   Once you've implemented the logic, test your code by running
+  - `npm run test-calculator`
 */
 
-class Calculator {}
+class Calculator {
+  constructor() {
+    this.result = 0;
+  }
+
+  add(num) {
+    this.result += num;
+  }
+
+  subtract(num) {
+    this.result -= num;
+  }
+
+  multiply(num) {
+    this.result *= num;
+  }
+
+  divide(num) {
+    if (num === 0) {
+      throw new ErrorEvent();
+    }
+    this.result /= num;
+  }
+
+  clear() {
+    this.result = 0;
+  }
+
+  getResult() {
+    return this.result;
+  }
+
+  calculate(expression) {
+    // Remove extra spaces
+    expression = expression.replace(/\s+/g, "");
+
+    // Validate expression for invalid characters
+    if (!/^[0-9+\-*/().]+$/.test(expression)) {
+      throw new Error("Invalid input");
+    }
+
+    // Evaluate the expression using eval
+    try {
+      this.result = eval(expression); // Using eval for simplicity, can be replaced with a safer parser
+    } catch (error) {
+      throw new Error("Invalid expression");
+    }
+  }
+}
+
+let c = new Calculator(0);
+console.log(c.calculate("10+3-19"));
 
 module.exports = Calculator;
