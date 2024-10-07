@@ -1,3 +1,8 @@
+## UI-Design
+
+-  [Todo layout](https://www.creative-tim.com/twcomponents/component/todo-list-app)
+-  [Button Design](https://www.creative-tim.com/twcomponents/component/buttons-with-icons)
+
 You have been given the code of a purely frontend TODO app
 You have to fill in the following functions - 
  - addTodoToDom
